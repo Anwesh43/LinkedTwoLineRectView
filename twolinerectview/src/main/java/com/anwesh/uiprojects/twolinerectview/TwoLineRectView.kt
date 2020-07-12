@@ -174,4 +174,27 @@ class TwoLineRectView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TwoLineRectView) {
+
+        private val animator : Animator = Animator(view)
+        private val tlr : TwoLineRect = TwoLineRect(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tlr.draw(canvas, paint)
+            animator.animate {
+                tlr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tlr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
