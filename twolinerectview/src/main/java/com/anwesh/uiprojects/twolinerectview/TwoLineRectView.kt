@@ -31,7 +31,8 @@ fun Canvas.drawTwoLineRect(scale : Float, w : Float, h : Float, paint : Paint) {
     val wBar : Float = w / widthFactor
     for (j in 0..1) {
         val sfj : Float = sf.divideScale(j, 3)
-        drawLine(-wBar / 2, 0f, wBar / 2, h * sfj, paint)
+        val currWBar : Float = 2 * wBar * j
+        drawLine(-wBar + currWBar, 0f, -wBar + currWBar, h * sfj, paint)
     }
     drawRect(RectF(-wBar, 0f, wBar, h * sf.divideScale(2, parts)), paint)
 }
