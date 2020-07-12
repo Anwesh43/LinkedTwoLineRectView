@@ -199,4 +199,13 @@ class TwoLineRectView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TwoLineRectView {
+            val view : TwoLineRectView = TwoLineRectView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
